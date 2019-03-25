@@ -35,11 +35,13 @@ def trim_list(list_to_be_trimemd):
                         not_contain.append(list_to_be_trimemd[i+1])
                     else: 
                         list_trim.append(list_to_be_trimemd[i+1])
-                elif list_to_be_trimemd[i][4] < list_to_be_trimemd[i+1][3]:
+                elif int(list_to_be_trimemd[i][4]) < int(list_to_be_trimemd[i+1][3]):
                     list_trim.append(list_to_be_trimemd[i])
-            else:list_trim.append(list_to_be_trimemd[i])
+                elif int(list_to_be_trimemd[i][4]) > int(list_to_be_trimemd[i+1][3]):
+                    continue
+            else:
+                list_trim.append(list_to_be_trimemd[i])
     return list_trim
-
 
 def main():
 
