@@ -1,4 +1,4 @@
-#!usr/bin/python
+#!/usr/bin/env python3
 
 # Usage: cvt_egg2gff.py reference.fasta eggNOG_results_file
 
