@@ -1,5 +1,7 @@
 #!usr/bin/python
 
+# Usage: cvt_egg2gff.py reference.fasta eggNOG_results_file
+
 import sys,re
 
 def read_reference_file(filename):
