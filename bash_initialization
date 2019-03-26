@@ -1,6 +1,8 @@
 #!usr/bin/bash
 #!/usr/bin/env python3
 
+echo "doing SignalP"
+
 for i in /projects/team2/gene_pred/Prodigal_results/proteins/*.faa; do 
  ~/signalp-5.0/bin/signalp -fasta $i -org gram- -format short -gff3
 done
@@ -10,6 +12,7 @@ done
 mkdir spoutput
 mv *.gff3 ./spoutput
 
+echo "doing TM-HMM"
 
 for i in /projects/team2/gene_pred/Prodigal_results/proteins/*.faa; do 
 #echo $i
