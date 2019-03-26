@@ -56,8 +56,8 @@ def convert_eggnog(intput,output):
             if annotation[0] == list_reference[i][0]:
                 list_reference[i][5] = annotation[5]
                 list_reference[i][8] = annotation[8]
-    
-    with open('final_results_from_eggNOG_97.gff','w') as f:
+    output_file = output + '.gff'
+    with open(output_file,'w') as f:
         for line in list_reference:
             f.write('\t'.join(map(str,line)))
             f.write('\n')
