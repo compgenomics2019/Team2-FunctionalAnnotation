@@ -1,3 +1,4 @@
+#!usr/bin/python 3
 import sys,re 
 
 def read_reference(filename):
