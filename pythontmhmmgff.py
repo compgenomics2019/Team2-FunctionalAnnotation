@@ -20,7 +20,7 @@ def read_tmhmm_output(filename):
     with open(filename,'r') as f:
         for line in f:
             list_temp = [None,None,None,None,None,None,None,None,None]            
-            list_temp[0] = line.split()[0][1:]
+            list_temp[0] = line.split()[0]
             list_temp[1] = 'TMHMM v2.0'
             list_temp[2] = 'Transmembrane Helices'
             x=''
