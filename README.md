@@ -12,4 +12,4 @@
 
 **SignalP 5.0**
 
-**TMHMM**
+**TMHMM v2.0**
