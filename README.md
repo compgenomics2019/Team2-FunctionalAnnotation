@@ -20,6 +20,10 @@
 
 **blast+**
 
+**resfinder**
+
+**rgi**
+
 ### Quick Start
 
 To just run interproscan
