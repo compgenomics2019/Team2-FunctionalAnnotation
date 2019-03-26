@@ -13,3 +13,5 @@
 **SignalP 5.0**
 
 **TMHMM v2.0**
+
+**CRT1.2-CLI**
