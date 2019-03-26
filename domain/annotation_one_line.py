@@ -1,5 +1,4 @@
 #!usr/bin/python 3
-
 import sys,re
 from subprocess import Popen,PIPE,call
 
@@ -36,8 +35,7 @@ def replace_header(filename,dic):
     stdout, stderr = process.communicate()
     del stdout,stderr
     for key in dic:
-        sed_cmd = 's/' + key + '/' + dic[key] + '/'
-        print(key,dic[key])
+        sed_cmd = 's/' + key + '/' + dic[key] + '/1'
         call(['sed','-i',"''",sed_cmd,new_file])
 
 
@@ -59,11 +57,10 @@ def main():
         for key,value in dic_signature_desc.items():
             if value == []:
                 dic_signature_desc[key].append("Hypothetical protein")
-                print(dic_signature_desc[key])
-            # print(dic_signature_desc)
             dic_signature_desc[key] = key + ' ' + ';'.join(value)
         replace_header(file_f,dic_signature_desc)
 
     
 if __name__ == '__main__':
     main()
+
