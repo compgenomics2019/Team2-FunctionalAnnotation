@@ -24,4 +24,6 @@ To just run interproscan
 
 ./functional_annotation_team2.py -c <clusteredfile> [-e] 
   
+For each other patterns, use the scripts in other different repos.
 
+An integrated version will be published soon.
