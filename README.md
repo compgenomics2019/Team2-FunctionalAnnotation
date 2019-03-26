@@ -16,6 +16,10 @@
 
 **CRT1.2-CLI**
 
+**perl**
+
+**blast+**
+
 ### Quick Start
 
 To just run interproscan
