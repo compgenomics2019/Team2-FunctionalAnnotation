@@ -43,10 +43,10 @@ def read_eggNOG_file(filename):
     f.close()
     return list_eggNOG
 
-def main():
+def convert_eggnog(intput,output):
 
-    file_reference = sys.argv[1]
-    file_eggNOG = sys.argv[2]
+    file_reference = intput
+    file_eggNOG = output
 
     list_reference = read_reference_file(file_reference)
     list_eggNOG = read_eggNOG_file(file_eggNOG)
@@ -63,5 +63,3 @@ def main():
             f.write('\n')
     f.close()
 
-if __name__ == '__main__':
-    main()
