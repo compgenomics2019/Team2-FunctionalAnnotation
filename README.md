@@ -15,3 +15,13 @@
 **TMHMM v2.0**
 
 **CRT1.2-CLI**
+
+### Quick Start
+
+To just run interproscan
+
+-e is using eggnog methods
+
+./functional_annotation_team2.py -c <clusteredfile> [-e] 
+  
+
