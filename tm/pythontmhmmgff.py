@@ -3,7 +3,7 @@
 import sys,re,os
 
 inputfiles=[]
-directory1 = "/home/priyam/bin/trimtmhmm/"
+directory1 = "./"
 for files1 in os.listdir(directory1):
     if files1.endswith(".tmhmm"):
         inputfiles.append(files1)
