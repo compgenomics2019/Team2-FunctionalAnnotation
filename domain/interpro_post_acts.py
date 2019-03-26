@@ -44,11 +44,11 @@ def trim_list(list_to_be_trimemd):
                 list_trim.append(list_to_be_trimemd[i])
     return list_trim
 
-def main():
+def interproscan_modify(cluster,inputs,output):
 
-    file_reference = sys.argv[1]
-    file_origff = sys.argv[2]
-    file_output = sys.argv[3]
+    file_reference = cluster
+    file_origff = inputs
+    file_output = output
 
     dic_reference = read_reference(file_reference)
     list_replace_sites = read_origff(file_origff,dic_reference)
@@ -61,6 +61,3 @@ def main():
         for line in list_trimed:
             f.write('\t'.join(line))
 
-
-if __name__ == '__main__':
-    main()
