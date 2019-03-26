@@ -1,3 +1,5 @@
+#!usr/bin/python 3
+
 import sys,re
 from subprocess import Popen,PIPE,call
 
