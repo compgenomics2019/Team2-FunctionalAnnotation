@@ -32,12 +32,9 @@ def annotation_eggnog(input_file,output_file):
     print(stdout,stderr)
     del stdout,stderr
 
-def main():
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+def eggnog_act(intput,output):
+    input_file = input
+    output_file = output
 
     download_eggnog_database()
     annotation_eggnog(input_file,output_file)
-
-if __name__ == '__main__':
-    main()
