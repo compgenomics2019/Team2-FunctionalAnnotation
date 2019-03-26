@@ -35,5 +35,5 @@ An integrated version will be published soon.
 
 ### Integrated Version
 run bash_initialization which runs SPP and TMHMM. It subsequently calls other python scripts for running other tools
-to run command
+to run command: 
 ./bash bash_initialization
