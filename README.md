@@ -1,6 +1,6 @@
 # Team2-FunctionalAnnotation
 
-### Requirement
+### Requirements
 
 **Python 2.7** 
 
