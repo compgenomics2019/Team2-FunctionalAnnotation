@@ -10,6 +10,6 @@
 
 **emapper** from eggNOG 4.5.1
 
-**SignalP 5.0"**
+**SignalP 5.0**
 
 **TMHMM**
