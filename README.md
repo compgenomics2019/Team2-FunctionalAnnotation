@@ -22,7 +22,7 @@
 
 **resfinder**
 
-**rgi**
+**rgi** https://github.com/arpcard/rgi
 
 ### Quick Start
 
