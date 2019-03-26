@@ -9,3 +9,7 @@
 **interproscan 5.33-72.0**
 
 **emapper** from eggNOG 4.5.1
+
+**SignalP 5.0"**
+
+**TMHMM**
