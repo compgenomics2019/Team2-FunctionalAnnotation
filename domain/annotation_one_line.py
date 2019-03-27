@@ -41,7 +41,7 @@ def replace_header(filename,dic,dic2):
         print(key,dic[key])
         call(['sed','-i',"''",sed_cmd,new_file])
 
-def ol_act(gffreference,fasta,path):
+def ol_act(gffreference,fasta):
 
     file_reference = gffreference#gff
     file_fastas = fasta #fasta
@@ -52,7 +52,7 @@ def ol_act(gffreference,fasta,path):
     for i in range(len(list_filenames)):
         file_r = list_filenames[i]
         file_f = list_fastas[i]
-        nfile = path + file_r
+        nfile = file_r
         dic_signature_desc,dic_pattern = make_reference_dic(file_f)
         make_signature_desc(nfile,dic_signature_desc)
         for key,value in dic_signature_desc.items():
