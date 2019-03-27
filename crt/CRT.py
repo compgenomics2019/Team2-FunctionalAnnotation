@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-def crt_act(input_dir)
+def crt_act(input_dir):
   import sys
   import subprocess
   from os import listdr
