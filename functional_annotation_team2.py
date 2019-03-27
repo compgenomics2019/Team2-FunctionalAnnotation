@@ -78,6 +78,7 @@ def main():
         if args.verbose:
             print("tmhmm is running for transmembrane protein annotation")
         os.system("bash ./tm/tmhmm.sh " + Input_directory)
+        tmhmm_act()
         Dir_merge.append('./tmhmm')
         
     # CRISPR annotation
