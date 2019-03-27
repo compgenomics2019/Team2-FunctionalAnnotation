@@ -38,14 +38,7 @@ The objective of the group is to annotate the gff and fasta files of the draft g
 
 To just run interproscan
 
--e is using eggnog methods
-
-./functional_annotation_team2.py -c <clusteredfile> [-e] 
-  
-For each other patterns, use the scripts in other different repos.
-
-An integrated version will be published soon.
-
+python3 ./functional_annotation_team2.py -i <input_directory>
 
 ### Integrated Version
 
