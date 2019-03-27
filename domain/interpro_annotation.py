@@ -8,14 +8,16 @@ from subprocess import Popen, PIPE
 def annotation_interproscan(input_file,output_file):
     
     # Apply all database for protein searching
-
+    logfile1 = open("./logfile_interpro_stdout.log",'w')
+    logfile2 = open("./logfile_interpro_stderr.log",'w')
+    
     process = Popen(args = ['interproscan.sh',   
                             '-i',input_file,    
                             '-f','gff3',     # hmmer method can be replaced
                             '-o',output_file,'-dp'],
-                            stdout = PIPE, stderr = PIPE)
+                            stdout = logfile1, stderr = logfile2)
     stdout, stderr = process.communicate()
-    print(stdout,stderr)
+    
     del stdout,stderr
 
 def main():
