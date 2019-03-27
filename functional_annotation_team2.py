@@ -17,6 +17,7 @@ from tm.pythontmhmmgff import tmhmm_act
 def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
     parser.add_argument('-i', '--input',  help='Input directory with faa files', default=sys.stdin, type=str, required=True)
+    parser.add_argument('-ni', '--nucleotide_input',  help='Input directory with fna files', type=str)
     parser.add_argument('-e', '--eggnog', help='Search against eggnog', default=False)
     parser.add_argument('-sp','--signalP', help='Running signalP to annotate signal peptide', default=False)
     parser.add_argument('-tm','--tmprotein', help='Running tmhmm to annotate transmembrane proteins', default=False)
@@ -30,6 +31,7 @@ def main():
     if args.help:
         print("Usage: functional_annotation_team2.py -i <input_dicrectory> [options]\n",
               "-i\t--input\tInput directory with faa files\n",
+              "-ni\t--nucleotide_input\tInput directory with fna files\n",
               "-e\t--eggnog\tSearch against eggnog[optional]\n",
               "-sp\t--signalP\tRunning signalP to annotate signal peptide[optional]\n",
               "-tm\t--tmprotein\tRunning tmhmm to annotate transmembrane proteins[optinal]\n",
