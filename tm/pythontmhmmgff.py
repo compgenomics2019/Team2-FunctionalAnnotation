@@ -2,7 +2,7 @@
 
 import sys,re,os
 
-def tmhmm_act()
+def tmhmm_act():
     inputfiles=[]
     directory1 = "./tmhmm/"
     for files1 in os.listdir(directory1):
