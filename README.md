@@ -64,3 +64,6 @@ Install the prerequirements using the miniconda command .Easisest installation i
 conda env create -f func_ann.yml
 ```
 You can then run the program by activating the func_ann environment.
+
+### TMHMM
+Before running TMHMM make sure the the path of perl is specified correctly in TMHMM/bin/tmhmm and TMHMM/bin/tmhmmformat.pl
