@@ -3,9 +3,6 @@ import sys
 almost_gff = sys.argv[1]	# almost gff path
 gff = sys.argv[2]	# prev gff path
 typ = sys.argv[3]	# file type
-#almost_gff = 'test.tsv'	# almost gff path
-#gff = 'CGT2006_contigs.gff'	# prev gff path
-#typ = 'resfinder'	# file type
 
 # key should match col 1 in gff + _iterator
 hits = {x.split('\t')[0].split()[0]:x.split('\t') for x in open(almost_gff).readlines()[1:]}
