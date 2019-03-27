@@ -2,7 +2,7 @@
 
 path = $1
 
-for i in $path/*.faa; do 
+for i in $1/*.faa; do 
 #echo $i
 #stripping of the path
 filename="${i##*/}" 
