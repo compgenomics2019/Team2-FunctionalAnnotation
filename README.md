@@ -40,6 +40,8 @@ An integrated version will be published soon.
 
 
 ### Integrated Version
+
+```shell
 "Usage: functional_annotation_team2.py -i <input_dicrectory> [options]\n",
               "-i\t--input\tInput directory with faa files\n",
               "-ni\t--nucleotide_input\tInput directory with fna files\n",
