@@ -1,6 +1,7 @@
 #!bin/bash
 
 path = $1
+
 for i in $path/*.faa; do 
 #echo $i
 #stripping of the path
