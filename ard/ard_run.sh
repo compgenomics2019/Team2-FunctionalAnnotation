@@ -32,27 +32,27 @@ do
 	esac
 done
 
-mkdir -p "$outdir"/resfinder/gffs
-for fasta in "$path_to_fastas"/*.fna
-do
-	file=$(basename "$fasta")
-	[[ v -eq 1 ]] && echo "Running Resfinder for ""$file"
-	sample=$(echo "$file" | sed 's/_.*//')
-	mkdir -p "$outdir"/resfinder/"$sample"
-	"$path_to_python3" "$path_to_resfinder" \
-		-i "$fasta" \
-		-o "$outdir"/resfinder/"$sample" \
-		-p "$path_to_dbs"/resfinder_db -b "$path_to_blast"n
-	awk -F "\t" 'BEGIN{OFS="\t"}{
-		print $6, "Resfinder", "ARD", $7, $7, ".", ".", ".",
-		"hit_name="$1";accession_no="$9";phenotype="$8;
-		}' "$outdir"/resfinder/"$sample"/results_tab.txt >> "$outdir"/resfinder/"$sample"/almost.gff
-	"$path_to_python3" gffmaker.py \
-		"$outdir"/resfinder/"$sample"/almost.gff \
-		"$path_to_gffs"/"$sample"_contigs.gff \
-		resfinder \
-		> "$outdir"/resfinder/gffs/"$sample"_resfinder.gff
-done
+#mkdir -p "$outdir"/resfinder/gffs
+#for fasta in "$path_to_fastas"/*.fna
+#do
+#	file=$(basename "$fasta")
+#	[[ v -eq 1 ]] && echo "Running Resfinder for ""$file"
+#	sample=$(echo "$file" | sed 's/_.*//')
+#	mkdir -p "$outdir"/resfinder/"$sample"
+#	"$path_to_python3" "$path_to_resfinder" \
+#		-i "$fasta" \
+#		-o "$outdir"/resfinder/"$sample" \
+#		-p "$path_to_dbs"/resfinder_db -b "$path_to_blast"n
+#	awk -F "\t" 'BEGIN{OFS="\t"}{
+#		print $6, "Resfinder", "ARD", $7, $7, ".", ".", ".",
+#		"hit_name="$1";accession_no="$9";phenotype="$8;
+#		}' "$outdir"/resfinder/"$sample"/results_tab.txt >> "$outdir"/resfinder/"$sample"/almost.gff
+#	"$path_to_python3" gffmaker.py \
+#		"$outdir"/resfinder/"$sample"/almost.gff \
+#		"$path_to_gffs"/"$sample"_contigs.gff \
+#		resfinder \
+#		> "$outdir"/resfinder/gffs/"$sample"_resfinder.gff
+#done
 
 filend=$(echo "$path_to_clusters" | sed 's/.*\./\./')
 infile=$(basename "$path_to_clusters" "$filend")
