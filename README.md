@@ -8,7 +8,7 @@ The piepline should be run on the server that some of the databases and programs
 
 ###OBJECTIVE
 
-The objective of the group is to annotate 50 fasta nucleotide and amino acid files and try to uncover as much relevant information about the gene such as structural features such as transmembrane proteins, signal peptides, virulence factors, domains, motifs and functions.
+The objective of the group is to annotate the gff and fasta files of the draft genomes and try to uncover as much relevant information about the gene such as structural features such as transmembrane proteins, signal peptides, virulence factors, domains, motifs and functions.
 
 ### Requirements
 
