@@ -17,7 +17,7 @@ sed -i '/^$/d' *.tmhmm
 
 mkdir tmhmm
 
-/projects/team2/func_annotation/bin/python3/Python-3.7.2/python ./pythontmhmmgff.py
+/projects/team2/func_annotation/bin/python3/Python-3.7.2/python ./tm/pythontmhmmgff.py
 
 mv *.tmhmm ./tmhmm
 mv *.gff ./tmhmm
