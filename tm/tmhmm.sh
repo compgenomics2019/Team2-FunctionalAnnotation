@@ -1,4 +1,6 @@
-tmhmm_act(path){
+#!bin/bash
+
+path = $1
 for i in $path/*.faa; do 
 #echo $i
 #stripping of the path
@@ -20,5 +22,5 @@ python ./pythontmhmmgff.py
 mv *.tmhmm ./tmhmm
 mv *.gff ./tmhmm
 
-}
+
 
