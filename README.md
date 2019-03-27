@@ -1,5 +1,7 @@
 # Team2-FunctionalAnnotation
 
+by Tzu-Chuan Huang, Bridget Neary, Mingming Cao, Di Zhou, Mansi Gupta and Priyam Raut
+
 ### Requirements
 
 **Python 2.7** 
