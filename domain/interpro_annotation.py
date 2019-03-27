@@ -12,7 +12,7 @@ def annotation_interproscan(input_file,output_file):
     process = Popen(args = ['interproscan.sh',   
                             '-i',input_file,    
                             '-f','gff3',     # hmmer method can be replaced
-                            '-o','-dp',output_file],
+                            '-o',output_file,'-dp'],
                             stdout = PIPE, stderr = PIPE)
     stdout, stderr = process.communicate()
     print(stdout,stderr)
