@@ -2,18 +2,6 @@
 
 import sys,re,os
 
-inputfiles=[]
-directory1 = "./"
-for files1 in os.listdir(directory1):
-    if files1.endswith(".tmhmm"):
-        inputfiles.append(files1)
-    else:
-        continue
-
-#   inputDir= sys.argv[1]
-filename1 = "/home/priyam/bin/trimtmhmm/3.tmhmm"
-start=''
-end=''
 def read_tmhmm_output(filename):
     #count=0
     list_reference = []
@@ -55,20 +43,35 @@ def read_tmhmm_output(filename):
             #count = count +1
     #print(list_reference)
     return list_reference
-read_tmhmm_output(filename1)
-for files in inputfiles:
-        op1 = read_tmhmm_output(directory1+files)
-        out_file=files.split(".")[0]+'.gff'
-        #print(op1)
-        #print(out_file)
-        with open(out_file,'w') as of:
-            #print("writing into the file")
-            #fh.write("op1")
-            #print(listers,file=fh)
-            #print(listers)
-            for line in op1:
-                of.write('\t'.join(map(str,line)))
-                of.write('\n') 
-        #print(out_file)
-        #print(op1,file=out_file)
-    
+
+def tmhmm_act():
+    inputfiles=[]
+    directory1 = "./"
+    for files1 in os.listdir(directory1):
+        if files1.endswith(".tmhmm"):
+            inputfiles.append(files1)
+        else:
+            continue
+
+    #   inputDir= sys.argv[1]
+    filename1 = "/home/priyam/bin/trimtmhmm/3.tmhmm"
+    start=''
+    end=''
+
+    read_tmhmm_output(filename1)
+    for files in inputfiles:
+            op1 = read_tmhmm_output(directory1+files)
+            out_file=files.split(".")[0]+'.gff'
+            #print(op1)
+            #print(out_file)
+            with open(out_file,'w') as of:
+                #print("writing into the file")
+                #fh.write("op1")
+                #print(listers,file=fh)
+                #print(listers)
+                for line in op1:
+                    of.write('\t'.join(map(str,line)))
+                    of.write('\n') 
+            #print(out_file)
+            #print(op1,file=out_file)
+
