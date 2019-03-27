@@ -34,7 +34,7 @@ def relabel(In_path, Cluster_path): #need a path to a directory for 50 fasta and
 	os.system('cat ./Relabel/* > ' + Allfaa_path2file)
 	Cluster_path2fastafile = Cluster_path + '/ProdigalCluster_97.fasta' 
 	Cluster_path2ucfile = Cluster_path + '/ProdigalCluster_97.uc' 
-	os.system('usearch -cluster_fast '+ Allfaa_path2file + ' -id 0.97 -centroids ' + Cluster_path2fastafile  + ' -uc ' + Cluster_path2ucfile)
+	os.system('../bin/usearch -cluster_fast '+ Allfaa_path2file + ' -id 0.97 -centroids ' + Cluster_path2fastafile  + ' -uc ' + Cluster_path2ucfile)
 	os.system('rm ' + Allfaa_path2file)
 	return Cluster_path2fastafile, Cluster_path2ucfile
 
