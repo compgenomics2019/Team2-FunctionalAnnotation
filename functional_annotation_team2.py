@@ -11,7 +11,7 @@ from domian.cvt_egg2gff import convert_eggnog
 from domian.interpro_post_acts import interproscan_modify
 from cluster.clustering_and_mapping import relabel, mapping_back, merge
 from domain.annotaion_one_line import ol_act
-from sp.
+from sp.signalprun.py import signalP_finding
 
 def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
@@ -52,10 +52,12 @@ def main():
 ## ------------------------- Tool Script here -------------------------##
 #  Cluster_path2fastafile is the cluster_centriod file
 #  Input_directory is the Prodigal_fasta directory containing 50 faa file
-
+    
+    # Signal peptide annotation
+    
     if args.signalP:
+        signalP_finding()
         
-
 ## ------------------------- Tool Script end -------------------------##
     Output_gff_path = './Func_annotation_result'
     
