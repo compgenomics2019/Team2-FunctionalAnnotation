@@ -19,7 +19,6 @@ done
 
 sed -ir 's/^.*PredHel=0.*//' *.tmhmm
 sed -i '/^$/d' *.tmhmm
-for f in *.gff; do mv -- "$f" "tmhmm_$f" ; done
 
 
 
