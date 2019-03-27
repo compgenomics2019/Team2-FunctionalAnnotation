@@ -3,7 +3,7 @@
 
 tools=../tools
 path_to_resfinder="$tools"/resfinder/resfinder.py
-
+team2="/project/team2"
 path_to_clusters="$team2"/func_annotation/cluster/Cluster_faa/ProdigalCluster_95.fasta
 path_to_fastas="$team2"/gene_pred/Prodigal_results/nucleotides
 path_to_gffs="$team2"/gene_pred/Prodigal_results/output
