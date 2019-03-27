@@ -2,6 +2,10 @@
 
 by Tzu-Chuan Huang, Bridget Neary, Mingming Cao, Di Zhou, Mansi Gupta and Priyam Raut
 
+This pipeline is in /projects/team2/func_annotation/Team2-FunctionalAnnotation on the server.
+
+The piepline should be run on the server that some of the databases and programs have fixed path.
+
 ### Requirements
 
 **Python 2.7** 
