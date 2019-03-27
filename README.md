@@ -42,7 +42,7 @@ An integrated version will be published soon.
 ### Integrated Version
 
 ```shell
-"Usage: functional_annotation_team2.py -i <input_dicrectory> [options]\n",
+Usage: functional_annotation_team2.py -i <input_dicrectory> [options]\n",
               "-i\t--input\tInput directory with faa files\n",
               "-ni\t--nucleotide_input\tInput directory with fna files\n",
               "-e\t--eggnog\tSearch against eggnog[optional]\n",
@@ -51,7 +51,5 @@ An integrated version will be published soon.
               "-ol\t--one_line\tOne line annotation with gene names[Ture or False]\n",
               "-v\t--verbose\tVerbose mode\n",
               "-h\t--help\tPrint usage\n")
-
-
-
+```
 
