@@ -63,4 +63,3 @@ for files in inputfiles:
         for line in op1:
             of.write('\t'.join(map(str,line)))
             of.write('\n') 
-    
