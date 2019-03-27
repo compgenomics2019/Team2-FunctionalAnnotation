@@ -34,6 +34,17 @@ An integrated version will be published soon.
 
 
 ### Integrated Version
-run bash_initialization which runs SPP and TMHMM. It subsequently calls other python scripts for running other tools
-to run command: 
-./bash bash_initialization
+Usage: functional_annotation_team2.py -i <input_dicrectory> [options]",
+              "-i --input Input directory with 50 fna file,
+              "-e --eggnog Search against eggnog[optional]",
+              "-sp --signalP Running signalP to annotate signal peptide[optional]",
+              "-tm --tmprotein Running tmhmm to annotate transmembrane proteins[optinal]",
+              "-ol --one_line One line annotation with gene names[Ture or False]",
+              "-v --verboseVerbose mode",
+              "-h --help Print usage")
+
+
+Output Folders
+
+
+
