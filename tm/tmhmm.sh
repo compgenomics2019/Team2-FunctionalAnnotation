@@ -23,5 +23,5 @@ python ./pythontmhmmgff.py
 mv *.tmhmm ./tmhmm
 mv *.gff ./tmhmm
 
-
+rm -rf TMHMM_*
 
