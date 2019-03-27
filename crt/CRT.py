@@ -3,7 +3,7 @@
 def crt_act(input_dir):
   import sys
   import subprocess
-  from os import listdr
+  from os import listdir
   from os.path import isfile, join
 
   inputDir = input_dir
