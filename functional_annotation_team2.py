@@ -13,20 +13,18 @@ from cluster.clustering_and_mapping import relabel, mapping_back, merge
 from domain.annotation_one_line import ol_act
 from sp.signalprun import signalP_finding
 from sp.signalprun import signalP_finding
-from tm.pythontmhmmgff import tmhmm_act
 from crt.CRT import crt_act
 from crt.convert_crt_to_gff import convert_crt
-
+from bedtools_scripts.bedtools_sort import sort
 
 def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
     parser.add_argument('-i', '--input',  help='Input directory with 50 fna file', default=sys.stdin, type=str, required=True)
-    parser.add_argument('-ni', '--nucleotide_input',  help='Input directory with fna files', type=str,, default=False)
+    parser.add_argument('-ni', '--nucleotide_input',  help='Input directory with fna files', type=str, default=False)
     parser.add_argument('-e', '--eggnog', help='Search against eggnog', default=False)
     parser.add_argument('-sp','--signalP', help='Running signalP to annotate signal peptide', default=False)
     parser.add_argument('-tm','--tmprotein', help='Running tmhmm to annotate transmembrane proteins', default=False)
     parser.add_argument('-crt','--crispr', help='Running CRISPR annotatation', default=False)
-    parser.add_argument('-ard','--antibiotic', help='Running antibiotic annotatation', default=False)
     parser.add_argument('-ol','--one_line', help='One line annotation with gene names', action='store_true')
     parser.add_argument('-v', '--verbose', help='Verbose mode', default=False)
     
@@ -37,6 +35,7 @@ def main():
     Input_directory = args.input
     Cluster_path = './Cluster'
     Cluster_path2fastafile, Cluster_path2ucfile = relabel(Input_directory, Cluster_path)
+#    Cluster_path2fastafile = './Cluster/ProdigalCluster_97_n.fasta'
     Dir_cluster = []
     Dir_merge = []
     Dir_merge.append('./Prod_RNA_Results')                                                                                                  
@@ -46,7 +45,7 @@ def main():
     Dir_cluster.append('./Interproscan')
     output_for_interproscan = './Interproscan/97_interpro.gff'                                                                             
     output_for_final = './Interproscan/97_interpro_trimmed.gff'                                                                            
-#     print(Cluster_path2fastafile,output_for_interproscan)                                                                                  
+#    print(Cluster_path2fastafile,output_for_interproscan)                                                                                  
     annotation_interproscan(Cluster_path2fastafile,output_for_interproscan)                                                                
     interproscan_modify(Cluster_path2fastafile,output_for_interproscan,output_for_final)                                                   
     os.system('rm ./Interproscan/97_interpro.gff')  
@@ -78,7 +77,6 @@ def main():
         if args.verbose:
             print("tmhmm is running for transmembrane protein annotation")
         os.system("bash ./tm/tmhmm.sh " + Input_directory)
-        tmhmm_act()
         Dir_merge.append('./tmhmm')
         
     # CRISPR annotation
@@ -90,21 +88,19 @@ def main():
             crt_act(args.nucleotide_input)
             convert_crt(args.nucleotide_input)   
         else: print("nucleotide fna needed")
-            
-     # Antibiotic resistence annotation
-    
-    if args.antibiotic:
-        clustered_file = Cluster_path2fastafile
-        ard_output = "./ard_results"
-        os.system("mkdir ./ard_results")
-        os.system("bash ./ard/ard_run.sh -i " + clustered_file + " -o " + ard_output)
-        
         
 ## ------------------------- Tool Script end -------------------------##
     Output_gff_path = './Func_annotation_result'
     
     mapping_back(Dir_cluster, Cluster_path, Output_gff_path)
     merge(Dir_merge, Output_gff_path)
+
+
+## ------------------------- Tool Script end -------------------------##
+    for files in os.listdir('./Func_annotation_result'):
+        files = './Func_annotation_result/' + files
+        os.system('sort ' + files + ' > ' + files +'_sorted.gff')
+        os.system('rm '+ files)
 
 ## ------------------------- One Line Annotation ---------------------##
     if args.one_line:                                                                                                                       
@@ -120,4 +116,4 @@ def main():
         os.system('rm ./fastas')                                                                                                            
                                                                                                                                             
 if __name__ == "__main__":                                                                                                                  
-    main()       
+    main()  
