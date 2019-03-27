@@ -17,12 +17,22 @@ def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
     parser.add_argument('-i', '--input',  help='Input directory with 50 fna file', default=sys.stdin, type=str, required=True)
     parser.add_argument('-e', '--eggnog', help='Search against eggnog', default=False)
-    parser.add_argument('-v', '--verbose', help='Verbose mode', action='store_true')
     parser.add_argument('-sp','--signalP', help='Running signalP to annotate signal peptide', default=False)
     parser.add_argument('-ol','--one_line', help='One line annotation with gene names', action='store_true')
+    parser.add_argument('-v', '--verbose', help='Verbose mode', default=False)
+    parser.add_argument('-h','--help', help='Print usage',  default=False)
     
     args = parser.parse_args()
 
+    # Usage
+    if args.help:
+        print("-i\t--input\tInput directory with 50 fna file\n",
+              "-e\t--eggnog\tSearch against eggnog[optional]\n,
+              "-sp\t--signalP\tRunning signalP to annotate signal peptide[optional]\n",
+              "-ol\t--one_line\tOne line annotation with gene names[Ture or False]\n",
+              "-v\t--verbose\tVerbose mode\n",
+              "-h\t--help\tPrint usage\n")
+    
     #Generate cluster fasta file and uc file
     Input_directory = args.input
     Cluster_path = './Cluster'
