@@ -12,8 +12,8 @@ def signalP_finding():
         #print(Filetemp)
         subprocess.Popen(['/projects/team2/func_annotation/tools/signalp-5.0/bin/signalp','-fasta', Filetemp, '-org','gram-','-format','short','-gff3']).communicate()
     subprocess.call(['mkdir',outputdir])
-    gff3Files = [f for f in os.listdir(path) if f.endswith('.gff3')]
-    signalp5Files= [f for f in os.listdir(path) if f.endswith('.signalp5')]
+    gff3Files = [f for f in os.listdir(./) if f.endswith('.gff3')]
+    signalp5Files= [f for f in os.listdir(./) if f.endswith('.signalp5')]
     gff3Files=gff3Files+signalp5Files
     for file1 in gff3Files:
             Filetemp1='./'+file1
