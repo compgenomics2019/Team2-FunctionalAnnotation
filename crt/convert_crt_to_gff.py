@@ -2,7 +2,7 @@
 
 #Usage: ./convert_crt_to_gff.py <inputdirectory>
 #In this case <inputdirectory> is /projects/team2/func_annotation/ncRNA_Results/Assembled_Contigs/CRT_results
-def convert_crt(input_dir)
+def convert_crt(input_dir):
 	import sys
 	import subprocess
 	from os import listdir,system
