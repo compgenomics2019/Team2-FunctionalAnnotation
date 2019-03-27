@@ -47,14 +47,14 @@ An integrated version will be published soon.
 
 ```shell
 Usage: functional_annotation_team2.py -i <input_dicrectory> [options],
-              -i  --input Input directory with faa files",
-              -ni --nucleotide_input  Input directory with fna files",
+              -i  --input Input directory with faa files,
+              -ni --nucleotide_input  Input directory with fna files,
               -e  --eggnog  Search against eggnog[optional]",
-              -sp --signalP Running signalP to annotate signal peptide[optional]",
-              -tm --tmprotein Running tmhmm to annotate transmembrane proteins[optinal]",
-              -ol --one_line  One line annotation with gene names[Ture or False]",
-              -v  --verbose Verbose mode",
-              -h  --help  Print usage\n")
+              -sp --signalP Running signalP to annotate signal peptide[optional],
+              -tm --tmprotein Running tmhmm to annotate transmembrane proteins[optinal],
+              -ol --one_line  One line annotation with gene names[Ture or False],
+              -v  --verbose Verbose mode,
+              -h  --help  Print usage
 ```
 
 ### Miniconda
