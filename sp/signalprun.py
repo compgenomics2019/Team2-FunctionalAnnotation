@@ -2,9 +2,10 @@
 
 import subprocess,os
 
-def signalP_finding():
+def signalP_finding(path):
     outputdir='./signalp'
-    path = '/projects/team2/gene_pred/Prodigal_results/proteins'
+    #default path; remove # from following line if using the default on the server
+    #path = '/projects/team2/gene_pred/Prodigal_results/proteins'
     Files = [f for f in os.listdir(path) if f.endswith('.faa')]
     for File in Files:
         print(File)
