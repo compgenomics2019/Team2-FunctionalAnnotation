@@ -45,14 +45,15 @@ def convert_crt(input_dir):
 	#getting all the crt output files listed in directory
 	inputDir = input_dir
 
-	inputfiles = [f for f in listdir(inputDir) if isfile(join(inputDir, f))]
+	inputfiles = [f for f in listdir("./") ]
 	system("mkdir ./CRISPR_resutls")
 	for file1 in inputfiles:
 		if "_crt.out" in file1:
 			output = convert_crtout_to_gff(file1)
-			outputfilename = "./CRISPR_resutls" + file1.split(".")[0]+".gff"
+			outputfilename = file1.split(".")[0]+".gff"
 			with open(outputfilename, 'w') as ofile:
 				for line in output:
 					ofile.write('\t'.join(map(str, line)))
 					ofile.write('\n')
-	system("rm " + input_dir + "/*.gff ")
+	system("mv *.gff ./CRISPR_results")
+	system("rm *.out ")
