@@ -6,6 +6,10 @@ This pipeline is in /projects/team2/func_annotation/Team2-FunctionalAnnotation o
 
 The piepline should be run on the server that some of the databases and programs have fixed path.
 
+###OBJECTIVE
+
+The objective of the group is to annotate 50 fasta nucleotide and amino acid files and try to uncover as much relevant information about the gene such as structural features such as transmembrane proteins, signal peptides, virulence factors, domains, motifs and functions.
+
 ### Requirements
 
 **Python 2.7** 
