@@ -6,6 +6,10 @@ This pipeline is in /projects/team2/func_annotation/Team2-FunctionalAnnotation o
 
 The piepline should be run on the server that some of the databases and programs have fixed path.
 
+It's a python script based on python 3.7 and above. 
+
+The python3.7 can be found on the server /projects/team2/func_annotation/bin/python3
+
 ### OBJECTIVE
 
 The objective of the group is to annotate the gff and fasta files of the draft genomes and try to uncover as much relevant information about the gene such as structural features such as transmembrane proteins, signal peptides, virulence factors, domains, motifs and functions.
