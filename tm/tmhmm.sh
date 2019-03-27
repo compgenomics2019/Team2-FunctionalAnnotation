@@ -14,7 +14,9 @@ sed -i '/^$/d' *.tmhmm
 
 mkdir tmhmm
 
-python pythontmhmmgff.py
+python ./pythontmhmmgff.py
+
+mv *.tmhmm ./tmhmm
 
 
 
