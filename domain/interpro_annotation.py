@@ -7,7 +7,7 @@ import sys,os
 def annotation_interproscan(input_file,output_file):
     
     # Apply all database for protein searching
-    os.system("/projects/team3/func_annot/bin/interproscan/interproscan-5.33-72.0/interproscan.sh -i " + input_file + "-f gff3 -o " + output_file + "-dp")
+    os.system("/projects/team3/func_annot/bin/interproscan/interproscan-5.33-72.0/interproscan.sh -i " + input_file + " -f gff3 -o " + output_file + " -dp")
 
 def main():
     input_file = sys.argv[1]
