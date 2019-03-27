@@ -41,11 +41,10 @@ def replace_header(filename,dic,dic2):
         print(key,dic[key])
         call(['sed','-i',"''",sed_cmd,new_file])
 
-def main():
+def ol_act(gffreference,fasta,path):
 
-    file_reference = sys.argv[1] #gff
-    path = './'
-    file_fastas = sys.argv[2] #fasta
+    file_reference = gffreference#gff
+    file_fastas = fasta #fasta
 
     list_filenames = read_reference(file_reference)
     list_fastas = read_reference(file_fastas)
