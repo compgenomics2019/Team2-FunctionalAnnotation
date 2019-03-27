@@ -76,8 +76,9 @@ def main():
         
     # Transmembrane protein annotation
     
-    if args.tmprotein:
-        tmhmm_act(Input_directory)
+    if args.tmprotein: 
+        os.system("./tm/tmhmm.sh " + Input_directory)
+        tmhmm_act("./tmhmm")
         
 ## ------------------------- Tool Script end -------------------------##
     Output_gff_path = './Func_annotation_result'
