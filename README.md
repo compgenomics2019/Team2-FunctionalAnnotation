@@ -57,3 +57,10 @@ Usage: functional_annotation_team2.py -i <input_dicrectory> [options],
               -h  --help  Print usage\n")
 ```
 
+### Miniconda
+
+Install the prerequirements using the miniconda command .Easisest installation is to create environments from the .yml files provided. They have all the dependencies required to use the pipeline. Please make sure the conda command is in your path.
+```shell 
+conda env create -f func_ann.yml
+```
+You can then run the program by activating the func_ann environment.
