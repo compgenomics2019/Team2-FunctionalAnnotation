@@ -43,9 +43,9 @@ def replace_header(filename,dic,dic2):
 
 def main():
 
-    file_reference = sys.argv[1]
+    file_reference = sys.argv[1] #gff
     path = './'
-    file_fastas = sys.argv[2]
+    file_fastas = sys.argv[2] #fasta
 
     list_filenames = read_reference(file_reference)
     list_fastas = read_reference(file_fastas)
