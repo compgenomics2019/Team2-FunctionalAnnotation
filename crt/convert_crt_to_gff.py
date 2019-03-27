@@ -46,7 +46,7 @@ def convert_crt(input_dir):
 	inputDir = input_dir
 
 	inputfiles = [f for f in listdir("./") ]
-	system("mkdir ./CRISPR_resutls")
+	system("mkdir ./CRISPR_results")
 	for file1 in inputfiles:
 		if "_crt.out" in file1:
 			output = convert_crtout_to_gff(file1)
@@ -55,5 +55,5 @@ def convert_crt(input_dir):
 				for line in output:
 					ofile.write('\t'.join(map(str, line)))
 					ofile.write('\n')
-	system("mv *.gff ./CRISPR_results")
+	system("mv *.gff ./CRISPR_resultst")
 	system("rm *.out ")
