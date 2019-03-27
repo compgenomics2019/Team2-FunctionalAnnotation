@@ -15,7 +15,7 @@ def relabel(In_path, Cluster_path): #need a path to a directory for 50 fasta and
 
 
     # Relabel the contig files and generate Relabel directory with relabel contig files
-    os.mkdir('./Relabel', 0755)
+    os.mkdir('./Relabel', 0o755)
     for FileName in relabel_file:
         InFile = open(In_path + '/' + FileName, 'r')
         OutFile = open('./Relabel/' + FileName, 'w')
@@ -30,7 +30,7 @@ def relabel(In_path, Cluster_path): #need a path to a directory for 50 fasta and
 
 # Merge the relabel file togethor and Run Uclust command line in Cluster directory
     Allfaa_path2file = Cluster_path + '/All_Prodigal.faa'
-    os.mkdir(Cluster_path, 0755)
+    os.mkdir(Cluster_path, 0o755)
     os.system('cat ./Relabel/* > ' + Allfaa_path2file)
     Cluster_path2fastafile = Cluster_path + '/ProdigalCluster_97.fasta' 
     Cluster_path2ucfile = Cluster_path + '/ProdigalCluster_97.uc' 
@@ -98,20 +98,21 @@ def mapping_back(dirs, cluster_path, output_gff_path):
                         lines[0] = elem
                         contig = lines[0].split('_')[0] #CGT2010
                         pos = lines[0].find('_')
-                        lines[3] = .
-                        lines[4] = .
-                        lines[6] = .
+                        lines[3] = '.'
+                        lines[4] = '.'
+                        lines[6] = '.'
                         lines[0] = lines[0][pos+1:]
                         d[contig].append('\t'.join(lines) + '\n')
         f.close()
 
     # path = './Func_annotation_result'
-    os.mkdir(output_gff_path, 0755)
+    os.mkdir(output_gff_path, 0o755)
     for key, values in sorted(d.items(), key = lambda x:x[0], reverse = False):
         filename = output_gff_path + '/' + key + '.gff'
         f = open(filename, 'w')
         f.write('##gff-version  3\n')
         for value in values:
+            f.write(value)
 
 def merge(dirs, output_gff_path): # list of directory of 50 gff file need to be merge, output gff file path
 # merge ncRNA and sigIP
@@ -131,7 +132,6 @@ def main():
     mapping_back(MapBackDir, Cluster_path, Output_gff_path)
     MergeDir = ['./Prod_RNA_Results', './signalpgff3', './resfinder', './TMHMM']
     merge(MergeDir, Output_gff_path)
-
 
 
 if __name__ == "__main__":
