@@ -9,7 +9,7 @@ def signalP_finding():
     for File in Files:
         print(File)
         Filetemp=path+'/'+File
-        print(Filetemp)
+        #print(Filetemp)
         subprocess.Popen(['/projects/team2/func_annotation/tools/signalp-5.0/bin/signalp','-fasta', Filetemp, '-org','gram-','-format','short','-gff3']).communicate()
     subprocess.call(['mkdir',outputdir])
     gff3Files = [f for f in os.listdir(path) if f.endswith('.gff3')]
