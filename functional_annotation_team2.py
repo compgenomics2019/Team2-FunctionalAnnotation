@@ -15,9 +15,7 @@ from domain.annotaion_one_line import ol_act
 def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
     parser.add_argument('-i', '--input',  help='Input directory with 50 fna file', default=sys.stdin, type=str, required=True)
-    # parser.add_argument('-c', '--cluster',  help='Use the cluster file as inputs (.fasta)', type=str, required=True)
     parser.add_argument('-e', '--eggnog', help='Search against eggnog', default=False)
-    # parser.add_argument('-m', '--mapping', help='Mapping back to each sample', type=str)
     parser.add_argument('-v', '--verbose', help='Verbose mode', action='store_true')
     parser.add_argument('-ol', '--one_line', help='One line annotation with gene names', action='store_true')
     args = parser.parse_args()
