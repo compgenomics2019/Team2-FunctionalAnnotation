@@ -36,16 +36,15 @@ An integrated version will be published soon.
 
 
 ### Integrated Version
-Usage: functional_annotation_team2.py -i <input_dicrectory> [options]",\n
-              "-i --input Input directory with 50 faa file",\n
-              "-e --eggnog Search against eggnog[optional]"\n,
-              "-sp --signalP Running signalP to annotate signal peptide[optional]",\n
-              "-tm --tmprotein Running tmhmm to annotate transmembrane proteins[optional]",\n
-              "-ol --one_line One line annotation with gene names[True or False]",\n
-              "-v --verbose Verbose mode",\n
-              "-h --help Print usage")
-
-
+"Usage: functional_annotation_team2.py -i <input_dicrectory> [options]\n",
+              "-i\t--input\tInput directory with faa files\n",
+              "-ni\t--nucleotide_input\tInput directory with fna files\n",
+              "-e\t--eggnog\tSearch against eggnog[optional]\n",
+              "-sp\t--signalP\tRunning signalP to annotate signal peptide[optional]\n",
+              "-tm\t--tmprotein\tRunning tmhmm to annotate transmembrane proteins[optinal]\n",
+              "-ol\t--one_line\tOne line annotation with gene names[Ture or False]\n",
+              "-v\t--verbose\tVerbose mode\n",
+              "-h\t--help\tPrint usage\n")
 
 
 
