@@ -94,7 +94,7 @@ def main():
     
     if args.antibiotic:
         clustered_file = Cluster_path2fastafile
-        ard_output = "./ard_results"
+        ard_output = "./ard_results/"
         os.system("mkdir ./ard_results")
         os.system("bash ./ard/ard_run.sh -i " + clustered_file + " -o " + ard_output)
         
