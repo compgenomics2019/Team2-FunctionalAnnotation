@@ -11,13 +11,16 @@ from domian.cvt_egg2gff import convert_eggnog
 from domian.interpro_post_acts import interproscan_modify
 from cluster.clustering_and_mapping import relabel, mapping_back, merge
 from domain.annotaion_one_line import ol_act
+from sp.
 
 def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
     parser.add_argument('-i', '--input',  help='Input directory with 50 fna file', default=sys.stdin, type=str, required=True)
     parser.add_argument('-e', '--eggnog', help='Search against eggnog', default=False)
     parser.add_argument('-v', '--verbose', help='Verbose mode', action='store_true')
-    parser.add_argument('-ol', '--one_line', help='One line annotation with gene names', action='store_true')
+    parser.add_argument('-sp','--signalP', help='Running signalP to annotate signal peptide', default=False)
+    parser.add_argument('-ol','--one_line', help='One line annotation with gene names', action='store_true')
+    
     args = parser.parse_args()
 
     #Generate cluster fasta file and uc file
@@ -49,10 +52,9 @@ def main():
 ## ------------------------- Tool Script here -------------------------##
 #  Cluster_path2fastafile is the cluster_centriod file
 #  Input_directory is the Prodigal_fasta directory containing 50 faa file
-#  I need the directory path you generate!!!!!!
 
-
-
+    if args.signalP:
+        
 
 ## ------------------------- Tool Script end -------------------------##
     Output_gff_path = './Func_annotation_result'
