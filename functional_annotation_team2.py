@@ -26,8 +26,9 @@ def main():
 
     # Usage
     if args.help:
-        print("-i\t--input\tInput directory with 50 fna file\n",
-              "-e\t--eggnog\tSearch against eggnog[optional]\n,
+        print("Usage:\n",
+              "-i\t--input\tInput directory with 50 fna file\n",
+              "-e\t--eggnog\tSearch against eggnog[optional]\n",
               "-sp\t--signalP\tRunning signalP to annotate signal peptide[optional]\n",
               "-ol\t--one_line\tOne line annotation with gene names[Ture or False]\n",
               "-v\t--verbose\tVerbose mode\n",
