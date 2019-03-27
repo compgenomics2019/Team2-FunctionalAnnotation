@@ -18,6 +18,7 @@ mkdir tmhmm
 python ./pythontmhmmgff.py
 
 mv *.tmhmm ./tmhmm
+mv *.gff ./tmhmm
 
 }
 
