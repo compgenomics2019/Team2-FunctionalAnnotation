@@ -1,4 +1,4 @@
-#!usr/bin/python 3
+#!/usr/bin/python 3
 
 import sys,os
 
@@ -13,14 +13,13 @@ def download_eggnog_database():
 
 
 def annotation_eggnog(input_file,output_file):
-    
+
     # Using diamond for fast and accurate annotation
     print("Mapping to eggnog")
+    print(input_file,output_file)
     os.system("python /projects/team2/func_annotation/tools/eggnog/eggnog_dataset/eggnog-mapper-1.0.3/emapper.py -i " + str(input_file) + " -m diamond -d /projects/team2/func_annotation/tools/eggnog/eggnog_dataset/eggnog-mapper-1.0.3/db -o " + str(output_file))
 
-def eggnog_act(intput,output):
-    input_file = input
-    output_file = output
+def eggnog_act(input_file,output_file):
 
-    #download_eggnog_database()
+    download_eggnog_database()
     annotation_eggnog(input_file,output_file)
