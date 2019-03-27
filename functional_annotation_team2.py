@@ -14,15 +14,18 @@ from domain.annotation_one_line import ol_act
 from sp.signalprun import signalP_finding
 from sp.signalprun import signalP_finding
 from tm.pythontmhmmgff import tmhmm_act
+from crt.CRT import crt_act
+from crt.convert_crt_to_gff import convert_crt
 
 
 def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
     parser.add_argument('-i', '--input',  help='Input directory with 50 fna file', default=sys.stdin, type=str, required=True)
-    parser.add_argument('-ni', '--nucleotide_input',  help='Input directory with fna files', type=str)
+    parser.add_argument('-ni', '--nucleotide_input',  help='Input directory with fna files', type=str,, default=False)
     parser.add_argument('-e', '--eggnog', help='Search against eggnog', default=False)
     parser.add_argument('-sp','--signalP', help='Running signalP to annotate signal peptide', default=False)
     parser.add_argument('-tm','--tmprotein', help='Running tmhmm to annotate transmembrane proteins', default=False)
+    parser.add_argument('-crt','--crispr', help='Running CRISPR annotatation', default=False)
     parser.add_argument('-ol','--one_line', help='One line annotation with gene names', action='store_true')
     parser.add_argument('-v', '--verbose', help='Verbose mode', default=False)
     
@@ -63,14 +66,28 @@ def main():
     # Signal peptide annotation
     
     if args.signalP:
+        if args.verbose:
+            print("signalP is running for signal peptide annotation")
         signalP_finding(Input_directory)
         Dir_merge.append('./signalp')
         
     # Transmembrane protein annotation
     
     if args.tmprotein:
+        if args.verbose:
+            print("tmhmm is running for transmembrane protein annotation")
         os.system("bash ./tm/tmhmm.sh " + Input_directory)
         Dir_merge.append('./tmhmm')
+        
+    # CRISPR annotation
+    
+    if args.crispr:
+        if args.nucleotide_input:
+            if args.verbose:
+                print("CRISPR annotation is running")
+            crt_act(args.nucleotide_input)
+            convert_crt(args.nucleotide_input)   
+        else: print("nucleotide fna needed")
         
 ## ------------------------- Tool Script end -------------------------##
     Output_gff_path = './Func_annotation_result'
