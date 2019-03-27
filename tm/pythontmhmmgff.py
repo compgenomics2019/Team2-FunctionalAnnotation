@@ -59,8 +59,8 @@ read_tmhmm_output(filename1)
 for files in inputfiles:
         op1 = read_tmhmm_output(directory1+files)
         out_file=files.split(".")[0]+'.gff'
-        print(op1)
-        print(out_file)
+        #print(op1)
+        #print(out_file)
         with open(out_file,'w') as of:
             #print("writing into the file")
             #fh.write("op1")
