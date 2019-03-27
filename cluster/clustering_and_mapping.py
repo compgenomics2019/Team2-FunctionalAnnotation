@@ -77,7 +77,7 @@ def mapping_back(dirs, cluster_path, output_gff_path):
 
     gff_files = []
     for dir in dirs:
-        gff_files += [('./' + dir + '/' + name) for name in os.listdir('./' + dir) if name.endswith(".gff")]
+        gff_files += [( dir + '/' + name) for name in os.listdir('./' + dir) if name.endswith(".gff")]
 
     for gff in gff_files:
         f = open(gff, 'r')
