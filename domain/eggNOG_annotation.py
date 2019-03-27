@@ -7,16 +7,12 @@ import sys,os
 def download_eggnog_database():
 
     # Before annotation, bactNOG database will be checked and installed
-
-    print("Chekcing the eggnog database")
     os.system("python /projects/team2/func_annotation/tools/eggnog/eggnog_dataset/eggnog-mapper-1.0.3/download_eggnog_data.py -y bact")
 
 
 def annotation_eggnog(input_file,output_file):
 
     # Using diamond for fast and accurate annotation
-    print("Mapping to eggnog")
-    print(input_file,output_file)
     os.system("python /projects/team2/func_annotation/tools/eggnog/eggnog_dataset/eggnog-mapper-1.0.3/emapper.py -i " + str(input_file) + " -m diamond -d /projects/team2/func_annotation/tools/eggnog/eggnog_dataset/eggnog-mapper-1.0.3/db -o " + str(output_file))
 
 def eggnog_act(input_file,output_file):
