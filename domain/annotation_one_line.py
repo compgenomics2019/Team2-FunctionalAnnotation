@@ -39,7 +39,7 @@ def replace_header(filename,dic,dic2):
     for key in dic.keys():
         sed_cmd = 's/' + dic2[key] + '/' + dic[key].replace('/',' or ') + ' ' + dic2[key] + '/'
         print(key,dic[key])
-        call(['sed','-i',"''",sed_cmd,new_file])
+        call(['sed','-i',sed_cmd,new_file])
 
 def ol_act(gffreference,fasta):
 
