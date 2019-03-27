@@ -15,7 +15,6 @@ def download_eggnog_database():
                             'bact'],            # Download specific database for bacteria
                             stdout = PIPE, stderr = PIPE)
     stdout, stderr = process.communicate()
-    print(stdout,stderr)
     del stdout,stderr
 
 def annotation_eggnog(input_file,output_file):
