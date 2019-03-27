@@ -1,4 +1,5 @@
-for i in /projects/team2/gene_pred/Prodigal_results/proteins/*.faa; do 
+tmhmm_act(path){
+for i in $path/*.faa; do 
 #echo $i
 #stripping of the path
 filename="${i##*/}" 
@@ -18,5 +19,5 @@ python ./pythontmhmmgff.py
 
 mv *.tmhmm ./tmhmm
 
-
+}
 
