@@ -35,7 +35,7 @@ An integrated version will be published soon.
 
 ### Integrated Version
 Usage: functional_annotation_team2.py -i <input_dicrectory> [options]",
-              "-i --input Input directory with 50 fna file,
+              "-i --input Input directory with 50 faa file,
               "-e --eggnog Search against eggnog[optional]",
               "-sp --signalP Running signalP to annotate signal peptide[optional]",
               "-tm --tmprotein Running tmhmm to annotate transmembrane proteins[optional]",
