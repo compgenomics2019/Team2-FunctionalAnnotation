@@ -12,5 +12,5 @@ for file1 in inputfiles:
   if "fasta" in file1:
     ofile = file1.split(".")[0]+"_crt.out"
     #print(ofile)
-    subprocess.call(['java', '-cp', 'CRT1.2-CLI.jar', 'crt', file1, ofile])
+    subprocess.call(['java', '-cp', '../bin/CRT1.2-CLI.jar', 'crt', file1, ofile])
 #print(inputfiles)
