@@ -12,12 +12,14 @@ def read_reference(filename):
 
 def make_reference_dic(filename):
     dic_signature_desc = {}
+    dic_pattern = {}
     with open(filename,'r') as f:
         for line in f:
             if re.match('>',line):
                 dic_signature_desc[line.split()[0][1:]] = []
+                dic_pattern[line.split()[0][1:]] = line[re.search("#",line).start():re.search("ID",line).start()+7]
     f.close()
-    return dic_signature_desc
+    return dic_signature_desc,dic_pattern
 
 
 def make_signature_desc(filename,dic):
@@ -28,16 +30,16 @@ def make_signature_desc(filename,dic):
                 end = re.search(";Name",line.split('\t')[-1]).start()
                 dic[line.split('\t')[0]].append(line.split('\t')[-1][start+15:end])    
 
-def replace_header(filename,dic):
+def replace_header(filename,dic,dic2):
 
     new_file = filename[:-4] + '_annotated.fasta'
     process = Popen(args = ['cp',filename,new_file],stdout = PIPE, stderr = PIPE)
     stdout, stderr = process.communicate()
     del stdout,stderr
-    for key in dic:
-        sed_cmd = 's/' + key + '/' + dic[key] + '/1'
+    for key in dic.keys():
+        sed_cmd = 's/' + dic2[key] + '/' + dic[key].replace('/',' or ') + ' ' + dic2[key] + '/'
+        print(key,dic[key])
         call(['sed','-i',"''",sed_cmd,new_file])
-
 
 def main():
 
@@ -52,13 +54,13 @@ def main():
         file_r = list_filenames[i]
         file_f = list_fastas[i]
         nfile = path + file_r
-        dic_signature_desc = make_reference_dic(file_f)
+        dic_signature_desc,dic_pattern = make_reference_dic(file_f)
         make_signature_desc(nfile,dic_signature_desc)
         for key,value in dic_signature_desc.items():
             if value == []:
                 dic_signature_desc[key].append("Hypothetical protein")
-            dic_signature_desc[key] = key + ' ' + ';'.join(value)
-        replace_header(file_f,dic_signature_desc)
+            dic_signature_desc[key] = ';'.join(value)
+        replace_header(file_f,dic_signature_desc,dic_pattern)
 
     
 if __name__ == '__main__':
