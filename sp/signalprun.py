@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#output for signalP should be protein fasta files
+#input for signalP should be protein fasta files
 
 import subprocess,os
 
