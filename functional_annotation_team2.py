@@ -16,6 +16,7 @@ from sp.signalprun import signalP_finding
 from crt.CRT import crt_act
 from crt.convert_crt_to_gff import convert_crt
 from bedtools_scripts.bedtools_sort import sort
+from operon.get_gff import convert_to_gff
 
 def main():
     parser = argparse.ArgumentParser(description='Functional annotation')
@@ -28,6 +29,7 @@ def main():
     parser.add_argument('-ard','--antibiotic',help='Running antibiotic annotatation', dedfault=False)
     parser.add_argument('-ol','--one_line', help='One line annotation with gene names', action='store_true')
     parser.add_argument('-v', '--verbose', help='Verbose mode', default=False)
+    parser.add_argument('-op', '--operon', help='operon annotation', default=False)
     
     args = parser.parse_args()
 
@@ -94,8 +96,20 @@ def main():
     
     if args.antibiotic:
         if args.verbose:
-                print("Anbiotic annotation annotation is running")
+                print("Ahttps://github.gatech.edu/compgenomics2019/Team2-FunctionalAnnotationnbiotic resistance annotation is running")
         os.system("./ard/ard_run.sh -i " + Cluster_path2fastafile)
+      
+    #Operon annotation
+    if args.operon:
+        if args.verbose:
+                print("Operon annotation is running")
+        os.system("/projects/team2/func_annotation/tools/ncbi-blast-2.8.1+/bin/makeblastdb -in 
+                  /projects/team2/func_annotation/operon/operon_ref.fasta -dbtype prot")
+        os.system("/projects/team2/func_annotation/tools/blastp -db /projects/team2/func_annotation/operon/operon_ref.fasta
+                  -query Cluster_path2fastafile -num_threads 4 -evalue 1e-10 
+                  -outfmt "6 stitle qseqid sseqid sstart send qcovs bitscore score evalue sstrand " > ./operon_output")
+        convert_to_gff()  #output file: ./97_operon.gff
+        
         
         
 ## ------------------------- Tool Script end -------------------------##
