@@ -4,48 +4,41 @@
 # seqid source type start end score strand phase attributes
 
 
-opref = {}
-with open("operon_ref.fasta",'r') as ref_file:
-	for line in ref_file:
-		if line.startswith('>'):
+def convert_to_gff():
+	opref = {}
+	with open("/projects/team2/func_annotation/operon/operon_ref.fasta",'r') as ref_file:
+		for line in ref_file:
+			if line.startswith('>'):
+				line = line.strip()
+				line = line.split(' ')
+				tmp = ' '.join(line[1:])
+				key = str(line[0])[1:]
+				opref[key] = tmp
+
+	input_ref = {}
+	with open("./Cluster_path2fastafile",'r') as input_file:
+		for line in input_file:
+			if line.startswith('>'):
+				line = line.strip()
+				line = line.split(' ')
+				tmp = [line[2],line[4]]
+				key = str(line[0])[1:]
+				input_ref[key] = tmp
+
+	gff = {}
+	with open("./operon_output",'r') as output_file:
+		for line in output_file:
 			line = line.strip()
-			line = line.split(' ')
-			tmp = ' '.join(line[1:])
-			key = str(line[0])[1:]
-			opref[key] = tmp
-#print(opref)
+			line = line.split('\t')
+			if line[1] not in gff.keys():
+				gff[line[1]] = [line[1],"DOOR","operon annotation",input_ref[line[1]][0],input_ref[line[1]][1],line[-2],'.','.',opref[line[2]]]
+		#print(gff)
 
-input_ref = {}
-with open("ProdigalCluster_97.fasta",'r') as input_file:
-	for line in input_file:
-		if line.startswith('>'):
-			line = line.strip()
-			line = line.split(' ')
-			tmp = [line[2],line[4]]
-			key = str(line[0])[1:]
-			input_ref[key] = tmp
-
-
-gff = {}
-with open("97_output",'r') as output_file:
-	for line in output_file:
-		line = line.strip()
-		line = line.split('\t')
-		if line[1] not in gff.keys():
-			gff[line[1]] = [line[1],"DOOR","operon annotation",input_ref[line[1]][0],input_ref[line[1]][1],line[-2],'.','.',opref[line[2]]]
-	#print(gff)
-
-
-with open("97_operon.gff","w") as gff_file:
-	for key in gff.keys():
-		line = '\t'.join(gff[key])
-		gff_file.write(line)
-		gff_file.write('\n')
-
-
-
-
-
+	with open("./97_operon.gff","w") as gff_file:
+		for key in gff.keys():
+			line = '\t'.join(gff[key])
+			gff_file.write(line)
+			gff_file.write('\n')
 
 
 
