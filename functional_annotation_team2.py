@@ -25,6 +25,7 @@ def main():
     parser.add_argument('-sp','--signalP', help='Running signalP to annotate signal peptide', default=False)
     parser.add_argument('-tm','--tmprotein', help='Running tmhmm to annotate transmembrane proteins', default=False)
     parser.add_argument('-crt','--crispr', help='Running CRISPR annotatation', default=False)
+    parser.add_argument('-ard','--antibiotic',help='Running antibiotic annotatation', dedfault=False)
     parser.add_argument('-ol','--one_line', help='One line annotation with gene names', action='store_true')
     parser.add_argument('-v', '--verbose', help='Verbose mode', default=False)
     
@@ -88,6 +89,14 @@ def main():
             crt_act(args.nucleotide_input)
             convert_crt(args.nucleotide_input)   
         else: print("nucleotide fna needed")
+            
+    # Antibiotic resistance annotation
+    
+    if args.antibiotic:
+        if args.verbose:
+                print("Anbiotic annotation annotation is running")
+        os.system("./ard/ard_run.sh -i " + Cluster_path2fastafile)
+        
         
 ## ------------------------- Tool Script end -------------------------##
     Output_gff_path = './Func_annotation_result'
