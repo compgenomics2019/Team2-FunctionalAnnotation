@@ -105,10 +105,12 @@ def main():
                 print("Operon annotation is running")
         os.system("/projects/team2/func_annotation/tools/ncbi-blast-2.8.1+/bin/makeblastdb -in 
                   /projects/team2/func_annotation/operon/operon_ref.fasta -dbtype prot")
+        os.system("mkdir operon_final_result")
+        os.system("chmod 755 operon_final_result")          
         os.system("/projects/team2/func_annotation/tools/blastp -db /projects/team2/func_annotation/operon/operon_ref.fasta
                   -query Cluster_path2fastafile -num_threads 4 -evalue 1e-10 
-                  -outfmt "6 stitle qseqid sseqid sstart send qcovs bitscore score evalue sstrand " > ./operon_output")
-        convert_to_gff()  #output file: ./97_operon.gff
+                  -outfmt "6 stitle qseqid sseqid sstart send qcovs bitscore score evalue sstrand " > ./operon_final_result/operon_output")
+        convert_to_gff()  #output file: ./operon_final_result/97_operon.gff
         
         
         
