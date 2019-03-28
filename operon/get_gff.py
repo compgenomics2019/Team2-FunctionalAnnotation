@@ -26,7 +26,7 @@ def convert_to_gff():
 				input_ref[key] = tmp
 
 	gff = {}
-	with open("./operon_output",'r') as output_file:
+	with open("./operon_final_result/operon_output",'r') as output_file:
 		for line in output_file:
 			line = line.strip()
 			line = line.split('\t')
@@ -34,11 +34,12 @@ def convert_to_gff():
 				gff[line[1]] = [line[1],"DOOR","operon annotation",input_ref[line[1]][0],input_ref[line[1]][1],line[-2],'.','.',opref[line[2]]]
 		#print(gff)
 
-	with open("./97_operon.gff","w") as gff_file:
+	with open("./operon_final_result/97_operon.gff","w") as gff_file:
 		for key in gff.keys():
 			line = '\t'.join(gff[key])
 			gff_file.write(line)
 			gff_file.write('\n')
+
 
 
 
