@@ -1,5 +1,5 @@
 #!usr/bin/python 3
-import sys,re 
+import sys,re,os 
 
 def read_reference(filename):
     dic_reference = {}
@@ -46,8 +46,13 @@ def trim_list(list_to_be_trimemd):
 
 def interproscan_modify(cluster,inputs,output):
 
+    os.system("awk '{if($6 < 0.001) print}' " + inputs + " > " + inputs[:-4] + "_evalue.gff")
+    
+    # cluster is cluters file, inputs are interproscan gff file, output is gff after modification
+    inputs_new = inputs[:-4] + "_evalue.gff"
+
     file_reference = cluster
-    file_origff = inputs
+    file_origff = inputs_new
     file_output = output
 
     dic_reference = read_reference(file_reference)
@@ -55,9 +60,17 @@ def interproscan_modify(cluster,inputs,output):
     list_replace_sites.sort()
 
     list_trimed = trim_list(list_replace_sites)
-    
+
+    os.system("rm " + inputs_new)  
+
     with open(file_output,'w') as f:
         f.write("##gff-version 3\n")
         for line in list_trimed:
             f.write('\t'.join(line))
+    f.close()
 
+def main():
+    interproscan_modify(sys.argv[1],sys.argv[2],sys.argv[3])
+
+if __name__ == '__main__':
+    main()
