@@ -1,4 +1,4 @@
-##### Annotation format announcement
+###### Annotation format announcement
 
 ###### For common annotation gff from protein fasta files (from cluster or direct 50 fasta files).
 
