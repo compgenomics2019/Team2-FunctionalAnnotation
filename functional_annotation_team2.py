@@ -41,7 +41,7 @@ def main():
 #    Cluster_path2fastafile = './Cluster/ProdigalCluster_97_n.fasta'
     Dir_cluster = []
     Dir_merge = []
-    Dir_merge.append('./Prod_RNA_Results')                                                                                                  
+#     Dir_merge.append('./Prod_RNA_Results')                                                                                                  
     if args.verbose:                                                                                                                        
         print("Interproscan is running for domain analysis") 
     os.system('mkdir ./Interproscan')
