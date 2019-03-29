@@ -1,22 +1,22 @@
-##### Annotation format annocement
+##### Annotation format announcement
 
-###### For comman annotation gff from protein fasta files (from cluster or direct 50 fasta files).
+###### For common annotation gff from protein fasta files (from cluster or direct 50 fasta files).
 
 - May leave multiple lines by different programs
+
+- **GFF Type I** :Annotate resutls from a single program with **one line**. Different results from different database are annotated in the final column.
+
+- **GFF Type II**: Leave multiple line for each gene but for clustered sequence, because we couldn't know exact each positions are, so just fill with '.' .
 
 - The start site and end site record the original contig position information, if programs applied protein positions, transfer to nucleotide positions.
 
 - Leave the score column as blank if applied multiple databases.
 
-- **GFF Type I** :Annotate resutls from a single program with **one line**. Different results from different database are annotated in the final column.
-
-  - Define the final column with 
+- Define the final column with 
 
   ```shell
   ID=<Define this after merging>;Target=<Node name>;Each_program_name=Each_match;..;..; 
   ```
-  
-- **GFF Type II**: Leave multiple line for each gene but for clustered sequence, because we couldn't know exact each positions are, so just fill with '.' .
 
 ###### For ncRNA and CRISPR (direct from contigs)
 
