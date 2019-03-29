@@ -115,6 +115,8 @@ def main():
     Output_gff_path = './Func_annotation_result'
     
     mapping_back(Dir_cluster, Cluster_path, Output_gff_path)
+    Position_map = merge_file_map('./' + Input_directory)
+    merge(Dir_merge, Output_gff_path, Position_map) 
     merge(Dir_merge, Output_gff_path)
 
 
