@@ -7,7 +7,7 @@ path_to_dbs="$tools"/arg_dbs
 path_to_blast="$tools"/ncbi-blast-2.8.1+/bin/blast
 path_to_python3="$tools"/python3/Python-3.7.2/python
 
-path_to_clusters="$team2"/func_annotation/cluster/Cluster_faa/ProdigalCluster_95.fasta
+path_to_clusters="$team2"/func_annotation/cluster/Cluster_faa/ProdigalCluster_97.fasta
 path_to_fastas="$team2"/gene_pred/Prodigal_results/nucleotides
 path_to_gffs="$team2"/gene_pred/Prodigal_results/output
 outdir=.
@@ -32,6 +32,7 @@ do
 	esac
 done
 
+### this is useless
 #mkdir -p "$outdir"/resfinder/gffs
 #for fasta in "$path_to_fastas"/*.fna
 #do
@@ -43,32 +44,33 @@ done
 #		-i "$fasta" \
 #		-o "$outdir"/resfinder/"$sample" \
 #		-p "$path_to_dbs"/resfinder_db -b "$path_to_blast"n
-#	awk -F "\t" 'BEGIN{OFS="\t"}{
-#		print $6, "Resfinder", "ARD", $7, $7, ".", ".", ".",
-#		"hit_name="$1";accession_no="$9";phenotype="$8;
-#		}' "$outdir"/resfinder/"$sample"/results_tab.txt >> "$outdir"/resfinder/"$sample"/almost.gff
-#	"$path_to_python3" gffmaker.py \
-#		"$outdir"/resfinder/"$sample"/almost.gff \
-#		"$path_to_gffs"/"$sample"_contigs.gff \
-#		resfinder \
-#		> "$outdir"/resfinder/gffs/"$sample"_resfinder.gff
+#	awk -F "\t" '{ if(NR>1) print $6;
+#		}' "$outdir"/resfinder/"$sample"/results_tab.txt > "$outdir"/resfinder/"$sample"/res_gff_pt1.tsv
+#	awk -F " " '{ print $1;
+#		}' "$outdir"/resfinder/"$sample"/res_gff_pt1.tsv > "$outdir"/resfinder/"$sample"/res_gff_pt1-1.tsv
+#	awk -F "\t" 'BEGIN{OFS="\t"}{ if(NR>1) print "Resfinder", "ARD", ".", ".",
+#		".", ".", ".", "hit_name="$1";accession_no="$9";phenotype="$8;
+#		}' "$outdir"/resfinder/"$sample"/results_tab.txt > "$outdir"/resfinder/"$sample"/res_gff_pt2.tsv
+#	echo "##gff-version 3" > "$outdir"/resfinder/gffs/"$sample"_resfinder.gff
+#	paste "$outdir"/resfinder/"$sample"/res_gff_pt1-1.tsv "$outdir"/resfinder/"$sample"/res_gff_pt2.tsv \
+#		>> "$outdir"/resfinder/gffs/"$sample"_resfinder.gff
 #done
 
 filend=$(echo "$path_to_clusters" | sed 's/.*\./\./')
 infile=$(basename "$path_to_clusters" "$filend")
 
 [[ v -eq 1 ]] && echo "Querying Victors database"
-mkdir -p "$outdir"/victors
+kdir -p "$outdir"/victors
 "$path_to_blast"p -query "$path_to_clusters" \
 	-db "$path_to_dbs"/victors \
 	-out "$outdir"/victors/victors_"$infile".out \
 	-outfmt "6 qseqid sseqid length pident qcovs qstart qend sstart send evalue stitle" \
 	-max_target_seqs 1 \
 	-evalue 0.001
-echo "##gff-version 3" > "$outdir"/victors/cluster_victors.gff
 awk -F "\t" '{ if(($4 >= 90) && ($5 >= 90)) {
 	print } }' "$outdir"/victors/victors_"$infile".out > "$outdir"/victors/victors_"$infile"_90.tsv
-awk -F "\t" 'BEGIN{OFS="\t"}{ print $1, "Victors", "ARD", ".", ".", $10, ".", ".", "hit_id="$2";hit_name="$11
+echo "##gff-version 3" > "$outdir"/victors/cluster_victors.gff
+awk -F "\t" 'BEGIN{OFS="\t"}{ print $1, "Victors", "ARD", ".", ".", $10, ".", ".", "hit_id="$2";hit_name="$11;
 	}' "$outdir"/victors/victors_"$infile"_90.tsv >> "$outdir"/victors/cluster_victors.gff
 
 [[ v -eq 1 ]] && echo "Querying VFDB"
@@ -79,9 +81,9 @@ mkdir -p "$outdir"/vfdb
 	-outfmt "6 qseqid sseqid length pident qcovs qstart qend sstart send evalue stitle" \
 	-max_target_seqs 1 \
 	-evalue 0.001
-echo "##gff-version 3" > "$outdir"/vfdb/cluster_vfdb.gff
 awk -F "\t" '{ if(($4 >= 90) && ($5 >= 90)) {
 	print } }' "$outdir"/vfdb/vfdb_"$infile".out > "$outdir"/vfdb/vfdb_"$infile"_90.tsv
+echo "##gff-version 3" > "$outdir"/vfdb/cluster_vfdb.gff
 awk -F "\t" 'BEGIN{OFS="\t"}{ print $1, "VFDB", "Virulence Factors", ".", ".", $10, ".", ".",
 	"hit_id="$2";hit_name="$11}' "$outdir"/vfdb/vfdb_"$infile"_90.tsv >> "$outdir"/vfdb/cluster_vfdb.gff
 
@@ -89,7 +91,11 @@ awk -F "\t" 'BEGIN{OFS="\t"}{ print $1, "VFDB", "Virulence Factors", ".", ".", $
 mkdir -p "$outdir"/rgi
 "$tools"/rgi main -i "$path_to_clusters" -o "$outdir"/rgi/rgi_"$infile" -t protein --clean
 sed 's/;/,/g' "$outdir"/rgi/rgi_"$infile".txt > "$outdir"/rgi/rgi_"$infile"_nosemi.txt
+awk -F " " 'BEGIN{OFS="\t"}{ if(NR>1) print $1;
+	}' "$outdir"/rgi/rgi_"$infile"_nosemi.txt > "$outdir"/rgi/rgi_gff_pt1.tsv
+awk -F "\t" 'BEGIN{OFS="\t"}{ if(NR>1) print "RGI", "ARD", ".", ".", ".", ".", ".", 
+	"best_hit="$9";ARO_accession="$11";drug_class="$15";resistance_mech="$16";gene_family="$17;
+	}' "$outdir"/rgi/rgi_"$infile"_nosemi.txt > "$outdir"/rgi/rgi_gff_pt2.tsv
 echo "##gff-version 3" > "$outdir"/rgi/cluster_rgi.gff
-awk -F "\t" 'BEGIN{OFS="\t"}{ print $1, "RGI", "ARD", "start", "end", ".", "strand", "frame", 
-	"hit_name="$1";ARO_accession="$11";drug_class="$15";gene_family="$17;
-	}' "$outdir"/rgi/rgi_"$infile"_nosemi.txt >> "$outdir"/rgi/cluster_rgi.gff
+paste "$outdir"/rgi/rgi_gff_pt1.tsv "$outdir"/rgi/rgi_gff_pt2.tsv >> "$outdir"/rgi/cluster_rgi.gff
+
