@@ -114,14 +114,51 @@ def mapping_back(dirs, cluster_path, output_gff_path):
         for value in values:
             f.write(value)
 
-def merge(dirs, output_gff_path): # list of directory of 50 gff file need to be merge, output gff file path
-# merge ncRNA and sigIP
-    # dirs = ['./Prod_RNA_Results', './signalpgff3']
-    for dir in dirs:
-        for file in os.listdir(dir):
-            contig = file.strip().split('_')[0]
-            filename = output_gff_path + '/' + contig + '.gff'
-            os.system('grep -v "^#" ' + dir + '/' + file + '>>' + filename)
+def merge_file_map(dir):
+    d = {}
+    for file in os.listdir(dir):
+        f = open('./Prodigal_protein/' + file, 'r')
+        node = {}
+        for line in f:
+            if line[0] == '>':
+                lines = line.strip().split(' ')
+                node[lines[0][1:]] = (lines[2], lines[4], lines[6])
+        file = file.strip().split('_')[0]
+        d[file] = copy.deepcopy(node)
+    return d
+
+def merge(dirs, output_gff_path, d):                                                                                    
+    for dir in dirs:                                                                                                
+        for file in os.listdir(dir):                                                                            
+            Append = []                                                                                     
+            contig = file.strip().split('_')[0]                                                             
+            filename = output_gff_path + '/' + contig + '.gff'                                              
+            f_append = open(dir + '/' + file, 'r')                                                          
+            for line in f_append:                                                                           
+                if line[0] == 'N':                                                                      
+                    lines = line.strip().split('\t')                                                
+                    lines[3] = str(int(d[contig][lines[0]][0]) + int(lines[3]) * 3 - 1)             
+                    lines[4] = str(int(d[contig][lines[0]][1]) + int(lines[4]) * 3 - 1)             
+                    if d[contig][lines[0]][0] == '1':                                               
+                        lines[6] = '+'                                                          
+                    else:                                                                           
+                        lines[6] = '-'                                                          
+                    Append.append('\t'.join(lines))                                                 
+            f_append.close()                                                                                
+            f = open(filename,'a')                                                                          
+            for line in Append:                                                                             
+                f.write(line + '\n')                                                                    
+            f.close() 
+
+
+# def merge(dirs, output_gff_path): # list of directory of 50 gff file need to be merge, output gff file path
+# # merge ncRNA and sigIP
+#     # dirs = ['./Prod_RNA_Results', './signalpgff3']
+#     for dir in dirs:
+#         for file in os.listdir(dir):
+#             contig = file.strip().split('_')[0]
+#             filename = output_gff_path + '/' + contig + '.gff'
+#             os.system('grep -v "^#" ' + dir + '/' + file + '>>' + filename)
 def main():
     Cluster_path = './Cluster'
     Cluster_path2fastafile, Cluster_path2ucfile = relabel('./Prodigal_protein', Cluster_path)
