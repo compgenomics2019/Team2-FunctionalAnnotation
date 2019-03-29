@@ -10,7 +10,7 @@
 
 - **GFF Type I** :Annotate resutls from a single program with **one line**. Different results from different database are annotated in the final column.
 
--- Define the final column with 
+  - Define the final column with 
 
   ```shell
   ID=<Define this after merging>;Target=<Node name>;Each_program_name=Each_match;..;..; 
