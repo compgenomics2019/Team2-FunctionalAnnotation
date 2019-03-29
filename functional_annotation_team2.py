@@ -97,6 +97,7 @@ def main():
     if args.antibiotic:
         if args.verbose:
                 print("Ahttps://github.gatech.edu/compgenomics2019/Team2-FunctionalAnnotationnbiotic resistance annotation is running")
+        os.system("chmod 755 ./ard/ard_run.sh")
         os.system("./ard/ard_run.sh -i " + Cluster_path2fastafile)
         Dir_cluster.append('./victors')
         Dir_cluster.append('./vfdb')
