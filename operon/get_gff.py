@@ -4,7 +4,7 @@
 # seqid source type start end score strand phase attributes
 
 
-def convert_to_gff():
+def convert_to_gff(Cluster_path2fastafile):
 	opref = {}
 	with open("/projects/team2/func_annotation/operon/operon_ref.fasta",'r') as ref_file:
 		for line in ref_file:
@@ -16,7 +16,7 @@ def convert_to_gff():
 				opref[key] = tmp
 
 	input_ref = {}
-	with open("./Cluster_path2fastafile",'r') as input_file:
+	with open(Cluster_path2fastafile,'r') as input_file:
 		for line in input_file:
 			if line.startswith('>'):
 				line = line.strip()
