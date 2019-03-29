@@ -9,7 +9,7 @@ from domain.interpro_annotation import annotation_interproscan
 from domain.eggNOG_annotation import eggnog_act
 from domain.cvt_egg2gff import convert_eggnog
 from domain.interpro_post_acts import interproscan_modify
-from cluster.clustering_and_mapping import relabel, mapping_back, merge
+from cluster.clustering_and_mapping import relabel, mapping_back, merge, merge_file_map
 from domain.annotation_one_line import ol_act
 from sp.signalprun import signalP_finding
 from sp.signalprun import signalP_finding
