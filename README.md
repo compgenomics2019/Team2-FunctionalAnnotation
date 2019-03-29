@@ -20,7 +20,7 @@ The objective of the group is to annotate the gff and fasta files of the draft g
 
 **Python 3.6** or above
 
-**[USEARCH(32-bit version)](https://drive5.com/usearch/download.html)
+**[USEARCH(32-bit version)](https://drive5.com/usearch/download.html)**
 
 **interproscan 5.33-72.0**
 
