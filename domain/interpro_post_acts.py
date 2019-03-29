@@ -28,7 +28,7 @@ def trim_list(list_to_be_trimemd):
     list_trim = []
     not_contain = []
     for i in range(1,len(list_to_be_trimemd)-1):
-        if list_to_be_trimemd[i] not in list_trim and list_to_be_trimemd[i] not in not_contain:
+        if list_to_be_trimemd[i] not in list_trim and list_to_be_trimemd[i] not in not_contain and list_to_be_trimemd[i][2] != 'polypeptide':
             if list_to_be_trimemd[i][0] == list_to_be_trimemd[i+1][0] and list_to_be_trimemd[i][1] == list_to_be_trimemd[i+1][1]:
                 if list_to_be_trimemd[i][3] == list_to_be_trimemd[i+1][3] and list_to_be_trimemd[i][4] == list_to_be_trimemd[i+1][4]:
                     if list_to_be_trimemd[i][5] < list_to_be_trimemd[i+1][5]:
@@ -36,7 +36,7 @@ def trim_list(list_to_be_trimemd):
                         not_contain.append(list_to_be_trimemd[i+1])
                     else: 
                         list_trim.append(list_to_be_trimemd[i+1])
-                elif int(list_to_be_trimemd[i][4]) < int(list_to_be_trimemd[i+1][3]):
+                elif int(list_to_be_trimemd[i][4]) <= int(list_to_be_trimemd[i+1][3]) :
                     list_trim.append(list_to_be_trimemd[i])
                 elif int(list_to_be_trimemd[i][4]) > int(list_to_be_trimemd[i+1][3]):
                     continue
@@ -57,9 +57,11 @@ def interproscan_modify(cluster,inputs,output):
 
     dic_reference = read_reference(file_reference)
     list_replace_sites = read_origff(file_origff,dic_reference)
-    list_replace_sites.sort()
 
-    list_trimed = trim_list(list_replace_sites)
+    list_replace_sites_new = sorted(list_replace_sites, key=lambda x: x[3])
+    list_replace_sites_new2 = sorted(list_replace_sites_new, key=lambda x: x[0] + x[1])
+
+    list_trimed = trim_list(list_replace_sites_new2)
 
     os.system("rm " + inputs_new)  
 
