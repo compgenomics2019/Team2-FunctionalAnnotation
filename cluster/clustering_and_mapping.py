@@ -90,6 +90,10 @@ def mapping_back(dirs, cluster_path, output_gff_path):
             #add this two line
                 temp[3] = Pos_map[temp[0]][0]
                 temp[4] = Pos_map[temp[0]][1]
+                if Pos_map[temp[0]][2] == '1':
+                    temp[6] = '+'
+                else:
+                    temp[6] = '-'
             #--------------         
                 temp[0] = temp[0][pos+1:]
                 d[contig].append('\t'.join(temp) + '\n')
@@ -98,9 +102,15 @@ def mapping_back(dirs, cluster_path, output_gff_path):
                         lines[0] = elem
                         contig = lines[0].split('_')[0] #CGT2010
                         pos = lines[0].find('_')
-                        lines[3] = '.'
-                        lines[4] = '.'
-                        lines[6] = '.'
+                        lines[3] = Pos_map[elem][0]
+                        lines[4] = Pos_map[elem][1]
+                        if Pos_map[elem][2] == '1':
+                            lines[6] = '+'
+                        else:
+                            lines[6] = '-'
+                        #lines[3] = '.'
+                        #lines[4] = '.'
+                        #lines[6] = '.'
                         lines[0] = lines[0][pos+1:]
                         d[contig].append('\t'.join(lines) + '\n')
         f.close()
