@@ -127,7 +127,7 @@ def mapping_back(dirs, cluster_path, output_gff_path):
 def merge_file_map(dir):
     d = {}
     for file in os.listdir(dir):
-        f = open('./Prodigal_protein/' + file, 'r')
+        f = open( './' + dir + '/'+ file, 'r')
         node = {}
         for line in f:
             if line[0] == '>':
