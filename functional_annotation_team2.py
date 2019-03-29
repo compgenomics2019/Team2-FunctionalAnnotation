@@ -98,6 +98,9 @@ def main():
         if args.verbose:
                 print("Ahttps://github.gatech.edu/compgenomics2019/Team2-FunctionalAnnotationnbiotic resistance annotation is running")
         os.system("./ard/ard_run.sh -i " + Cluster_path2fastafile)
+        Dir_cluster.append('./victors')
+        Dir_cluster.append('./vfdb')
+        Dir_cluster.append('./rgi')
       
     #Operon annotation
     if args.operon:
@@ -108,6 +111,7 @@ def main():
         os.system("chmod 755 operon_final_result")          
         os.system("/projects/team2/func_annotation/tools/blastp -db /projects/team2/func_annotation/operon/operon_ref.fasta -query " + Cluster_path2fastafile + " -num_threads 4 -evalue 1e-10 -outfmt 6 stitle qseqid sseqid sstart send qcovs bitscore score evalue sstrand  > ./operon_final_result/operon_output")
         convert_to_gff(Cluster_path2fastafile)  #output file: ./operon_final_result/97_operon.gff
+        Dir_cluster.append('./operon_final_result')
         
         
         
