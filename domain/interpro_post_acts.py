@@ -18,8 +18,8 @@ def read_origff(filename,dic_reference):
             if not re.match('##',line):
                 if line.split()[0] in dic_reference:
                     newline = line.split('\t')
-                    newline[3] = str(int(line.split('\t')[3]) + int(dic_reference[line.split('\t')[0]][0]))
-                    newline[4] = str(int(line.split('\t')[4]) + int(dic_reference[line.split('\t')[0]][1]))
+                    newline[3] = str((int(line.split('\t')[3])-1)*3 + int(dic_reference[line.split('\t')[0]][0]))
+                    newline[4] = str((int(line.split('\t')[4])-1)*3 + 2 + int(dic_reference[line.split('\t')[0]][0]))
                     list_replace_sites.append(newline)
     f.close()
     return list_replace_sites
