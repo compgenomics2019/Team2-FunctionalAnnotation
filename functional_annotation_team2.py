@@ -10,6 +10,7 @@ from domain.eggNOG_annotation import eggnog_act
 from domain.cvt_egg2gff import convert_eggnog
 from domain.interpro_post_acts import interproscan_modify
 from cluster.clustering_and_mapping import merge_file_map, relabel, mapping_back, merge
+from cluster.add_ids import add_ids_act
 from domain.annotation_one_line import ol_act
 from sp.signalprun import signalP_finding
 from sp.signalprun import signalP_finding
@@ -130,6 +131,12 @@ def main():
         files = './Func_annotation_result/' + files
         os.system('sort ' + files + ' > ' + files +'_sorted.gff')
         os.system('rm '+ files)
+        
+    for files in os.listdir('./Func_annotation_result'):
+        intput_file = './Func_annotation_result/' + files + '_sorted.gff'
+        output_file = './Func_annotation_result/' + files + '_final.gff'
+        add_ids_act(intput_file_output_file)
+        os.system('rm '+ files '_sorted.gff')
 
 ## ------------------------- One Line Annotation ---------------------##
     if args.one_line:                                                                                                                       
