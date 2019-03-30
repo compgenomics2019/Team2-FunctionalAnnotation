@@ -148,7 +148,7 @@ def merge(dirs, output_gff_path, d):
                 if line[0] == 'N':                                                                      
                     lines = line.strip().split('\t')                                                
                     lines[3] = str(int(d[contig][lines[0]][0]) +  ( int(lines[3]) -1 ) * 3 )          
-                    lines[4] = str(int(d[contig][lines[0]][0]) + ( int(lines[4]) -1 ) * 3 )           
+                    lines[4] = str(int(d[contig][lines[0]][0]) + ( int(lines[4]) - 1 ) * 3 + 2 )        
                     if d[contig][lines[0]][0] == '1':                                               
                         lines[6] = '+'                                                          
                     else:                                                                           
