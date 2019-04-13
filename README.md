@@ -52,8 +52,8 @@ Usage: functional_annotation_team2.py -i <input_dicrectory> [options],
               -crt  --crispr  Running CRISPR annotatation, # Uses assemlied contigs
               -ard  --antibiotic  Running antibiotic annotatation,
               -sp --signalP Running signalP to annotate signal peptide[optional],
-              -tm --tmprotein Running tmhmm to annotate transmembrane proteins[optinal],
-              -ol --one_line  One line annotation with gene names[Ture or False],
+              -tm --tmprotein Running tmhmm to annotate transmembrane proteins[optional],
+              -ol --one_line  One line annotation with gene names[True or False],
               -v  --verbose Verbose mode,
               -h  --help  Print usage
 ```
