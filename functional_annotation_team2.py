@@ -44,23 +44,23 @@ def main():
 #     Dir_merge.append('./Prod_RNA_Results')
     if args.verbose:
         print("Interproscan is running for domain analysis")
-#    os.system('mkdir ./Interproscan')
+    os.system('mkdir ./Interproscan')
     Dir_cluster.append('./Interproscan')
-#    output_for_interproscan = './Interproscan/97_interpro.gff'
-#    output_for_final = './Interproscan/97_interpro_trimmed.gff'
+    output_for_interproscan = './Interproscan/97_interpro.gff'
+    output_for_final = './Interproscan/97_interpro_trimmed.gff'
 #    print(Cluster_path2fastafile,output_for_interproscan)
-#    annotation_interproscan(Cluster_path2fastafile,output_for_interproscan)
-#    interproscan_modify(Cluster_path2fastafile,output_for_interproscan,output_for_final)
-#    os.system('rm ./Interproscan/97_interpro.gff')
+    annotation_interproscan(Cluster_path2fastafile,output_for_interproscan)
+    interproscan_modify(Cluster_path2fastafile,output_for_interproscan,output_for_final)
+    os.system('rm ./Interproscan/97_interpro.gff')
 
     if args.eggnog:
         if args.verbose:
             print("eggnog is running for domain analysis")
-#        os.system('mkdir ./EggNOG')
+        os.system('mkdir ./EggNOG')
         Dir_cluster.append('./EggNOG')
-#        output_for_eggnog = './EggNOG/97_eggnog.gff'
-#        eggnog_act(Cluster_path2fastafile,output_for_eggnog)
-#        convert_eggnog(Cluster_path2fastafile,output_for_eggnog)
+        output_for_eggnog = './EggNOG/97_eggnog.gff'
+        eggnog_act(Cluster_path2fastafile,output_for_eggnog)
+        convert_eggnog(Cluster_path2fastafile,output_for_eggnog)
 
 ## ------------------------- Tool Script here -------------------------##
 #  Cluster_path2fastafile is the cluster_centriod file
@@ -71,7 +71,7 @@ def main():
     if args.signalP:
         if args.verbose:
             print("signalP is running for signal peptide annotation")
-#        signalP_finding(Input_directory)
+        signalP_finding(Input_directory)
         Dir_merge.append('./signalp')
 
     # Transmembrane protein annotation
@@ -79,7 +79,7 @@ def main():
     if args.tmprotein:
         if args.verbose:
             print("tmhmm is running for transmembrane protein annotation")
-#        os.system("bash ./tm/tmhmm.sh " + Input_directory)
+        os.system("bash ./tm/tmhmm.sh " + Input_directory)
         Dir_merge.append('./tmhmm')
 
     # CRISPR annotation
@@ -88,8 +88,8 @@ def main():
         if args.nucleotide_input:
             if args.verbose:
                 print("CRISPR annotation is running")
-#            crt_act(args.nucleotide_input)
-#            convert_crt(args.nucleotide_input)
+            crt_act(args.nucleotide_input)
+            convert_crt(args.nucleotide_input)
         else: print("nucleotide fna needed")
 
     # Antibiotic resistance annotation
@@ -97,8 +97,8 @@ def main():
     if args.antibiotic:
         if args.verbose:
                 print("Anbiotic resistance annotation is running")
-#        os.system("chmod 755 ./ard/ard_run.sh")
-#        os.system("./ard/ard_run.sh -i " + Cluster_path2fastafile)
+        os.system("chmod 755 ./ard/ard_run.sh")
+        os.system("./ard/ard_run.sh -i " + Cluster_path2fastafile)
         Dir_cluster.append('./victors')
         Dir_cluster.append('./vfdb')
         Dir_cluster.append('./rgi')
@@ -107,11 +107,11 @@ def main():
     if args.operon:
         if args.verbose:
                 print("Operon annotation is running")
-#        os.system("/projects/team2/func_annotation/tools/ncbi-blast-2.8.1+/bin/makeblastdb -in /projects/team2/func_annotation/operon/operon_ref.fasta -dbtype prot")
-#        os.system("mkdir operon_final_result")
-#        os.system("chmod 755 operon_final_result")
-#        os.system("/projects/team2/func_annotation/tools/blastp -db /projects/team2/func_annotation/operon/operon_ref.fasta -query " + Cluster_path2fastafile + " -num_threads 4 -evalue 1e-10 -outfmt "6 stitle qseqid sseqid sstart send qcovs bitscore score evalue sstrand" > ./operon_final_result/operon_output")
-#        convert_to_gff(Cluster_path2fastafile)  #output file: ./operon_final_result/97_operon.gff
+        os.system("/projects/team2/func_annotation/tools/ncbi-blast-2.8.1+/bin/makeblastdb -in /projects/team2/func_annotation/operon/operon_ref.fasta -dbtype prot")
+        os.system("mkdir operon_final_result")
+        os.system("chmod 755 operon_final_result")
+        os.system("/projects/team2/func_annotation/tools/blastp -db /projects/team2/func_annotation/operon/operon_ref.fasta -query " + Cluster_path2fastafile + " -num_threads 4 -evalue 1e-10 -outfmt "6 stitle qseqid sseqid sstart send qcovs bitscore score evalue sstrand" > ./operon_final_result/operon_output")
+        convert_to_gff(Cluster_path2fastafile)  #output file: ./operon_final_result/97_operon.gff
         Dir_cluster.append('./operon_final_result')
 
 
