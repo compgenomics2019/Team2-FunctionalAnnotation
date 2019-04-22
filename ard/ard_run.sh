@@ -60,7 +60,7 @@ filend=$(echo "$path_to_clusters" | sed 's/.*\./\./')
 infile=$(basename "$path_to_clusters" "$filend")
 
 [[ v -eq 1 ]] && echo "Querying Victors database"
-kdir -p "$outdir"/victors
+mkdir -p "$outdir"/victors
 "$path_to_blast"p -query "$path_to_clusters" \
 	-db "$path_to_dbs"/victors \
 	-out "$outdir"/victors/victors_"$infile".out \
